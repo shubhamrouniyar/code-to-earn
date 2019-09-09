@@ -1,0 +1,15 @@
+#code
+t=int(input())
+while t>0:
+    n=int(input())
+    l=[int(x) for x in input().split()]
+    maximun_abhitak=l[0]
+    value=0
+    for i in range(len(l)):
+        value+=l[i]
+        if maximun_abhitak<value:
+            maximun_abhitak=value
+        if value<0:
+            value=0
+    print(maximun_abhitak)
+    t=t-1
