@@ -1,0 +1,21 @@
+l=[int(x) for x in input().split()]
+l.sort()
+count=0
+for i in range(len(l)-1,1,-1):
+    left=0
+    right=i-1
+    while left<right:
+        if l[left]+l[right]==l[i]:
+            count+=1
+            dup_left=left
+            dup_left+=1
+            while dup_left<right:
+                if l[left]+l[right]==l[i]:
+                    count+=1
+                    dup_left+=1
+            right-=1
+        if l[left]+l[right]<l[i]:
+            left+=1
+        if l[left]+l[right]>l[i]:
+            right-=1
+print(count)
