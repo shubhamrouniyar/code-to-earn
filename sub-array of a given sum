@@ -1,0 +1,47 @@
+l=[int(x) for x in input().split()]
+sum_value=int(input())
+sub_array=[]
+flag=0
+for i in range(len(l)):
+    for j in range(i+1,len(l)+1):
+        sub_array.append([l[i:j],sum(l[i:j])])
+for each_array in sub_array:
+    if each_array[1]==sum_value:
+        print(each_array[0])
+        flag=1
+        break
+if flag==0:
+    print("Not possible")
+    
+*****************************************************************
+#################################################################
+2nd method 
+
+l=[int(x) for x in input().split()]
+sum_value=int(input())
+curr_sum=l[0]
+i=1
+start=0
+flag=0
+while i<len(l):
+    while curr_sum>sum_value and start<i-1:
+        curr_sum=curr_sum-l[start]
+        start+=1
+    if curr_sum==sum_value:
+        print(start,i-1)
+        flag=1
+        break
+    curr_sum+=l[i]
+    i=i+1
+if flag==0:
+    print("Not possible")
+
+
+
+
+    
+    
+
+    
+    
+    
