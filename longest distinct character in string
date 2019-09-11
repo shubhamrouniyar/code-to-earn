@@ -1,0 +1,15 @@
+test=int(input())
+while test>0:
+    string=input()
+    max_len=0
+    i=0
+    res=[]
+    while i<len(string):
+        if string[i] in res:
+            res.remove(res[0])
+        else:
+            res+=string[i]
+            max_len=max(max_len,len(res))
+            i+=1
+    print(max_len)
+    test=test-1
