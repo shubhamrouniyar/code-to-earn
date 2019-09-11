@@ -1,0 +1,34 @@
+def romantoint(s):
+    if s=='I':
+        return 1
+    elif s=='V':
+        return 5
+    elif s=='X':
+        return 10
+    elif s=='L':
+        return 50
+    elif s=='C':
+        return 100
+    elif s=='D':
+        return 500
+    elif s=='M':
+        return 1000
+test=int(input())
+while test>0:
+    check="IVXLCDM"
+    string=input()
+    res=romantoint(string[0])
+    i=0
+    while i<len(string)-1:
+        index1=check.find(string[i])
+        index2=check.find(string[i+1])
+        if index1<index2:
+            res=res-romantoint(string[i])
+            diff=romantoint(string[i+1])-romantoint(string[i])
+            res+=diff
+            i+=1
+        else:
+            res+=romantoint(string[i+1])
+            i+=1
+    print(res)
+    test=test-1
