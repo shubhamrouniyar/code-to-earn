@@ -1,0 +1,34 @@
+test=int(input())
+def smallestsubstring(string,pattern):
+    pat_len=len(pattern)
+    string_len=len(string)
+    if pat_len>string_len:
+        return -1
+    hash_string=[0]*256
+    hash_pattern=[0]*256
+    for i in range(pat_len):
+        hash_pattern[ord(pattern[i])]=hash_pattern[ord(pattern[i])]+1
+    start=0
+    min_len=999999
+    count=0
+    start_index=-1
+    for i in range(len(string)):
+        hash_string[ord(string[i])]=hash_string[ord(string[i])]+1
+        if hash_pattern[ord(string[i])]!=0 and hash_pattern[ord(string[i])]>=hash_string[ord(string[i])]:
+            count+=1
+        if count==pat_len:
+            while hash_string[ord(string[start])]>hash_pattern[ord(string[start])] or hash_pattern[ord(string[start])]==0:
+                hash_string[ord(string[start])]=hash_string[ord(string[start])]-1
+                start+=1
+            len_val=i-start+1
+            if min_len>len_val:
+                min_len=len_val
+                start_index=start
+    if start_index==-1:
+        return -1
+    return string[start_index:start_index+min_len]
+while test>0:
+    str1=input()
+    str2=input()
+    print(smallestsubstring(str1,str2))
+    test=test-1
