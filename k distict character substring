@@ -1,0 +1,13 @@
+string=input()
+    k=int(input())
+    ans=0
+    for i in range(len(string)):
+        hash_map=[0]*256
+        count=0
+        for j in range(i,len(string)):
+            if hash_map[ord(string[j])]==0:
+                count+=1
+                hash_map[ord(string[j])]+=1
+            if count==k:
+                ans+=1
+    print(ans)
