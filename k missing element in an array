@@ -1,0 +1,8 @@
+l=[int(x) for x in input().split()]
+k=2 # 2 missing number
+d={}
+for x in l:
+    d[x]=1
+for i in range(1,len(l)+k+1):
+    if i not in d:
+        print(i,end=' ')
