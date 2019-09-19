@@ -1,0 +1,30 @@
+string=input()
+l=['a','aa','aa']
+no_of_deletion=0
+def permutation(str1,i,n,permutate):
+    if i==n-1:
+        permutate.append("".join(str1))
+        return
+    for j in range(i,n):
+        str1[i],str1[j]=str1[j],str1[i]
+        permutation(str1,i+1,n,permutate)
+        str1[i],str1[j]=str1[j],str1[i]
+permutate=[]
+permutation(list(string),0,len(string),permutate)
+for k in range(len(string)-1,0,-1):
+    flag=0
+    for each_str in permutate:
+        if each_str in l:
+            flag=1
+            print(no_of_deletion)
+            break
+        new_str=each_str[0:k]
+        if new_str in l:
+            flag=1
+            no_of_deletion+=len(string)-k
+            print(no_of_deletion)
+            break
+    if flag==1:
+        break
+
+        
