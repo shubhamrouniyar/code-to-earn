@@ -1,0 +1,12 @@
+def permutation(string,i,n,res):
+    if i==n-1:
+        res.append("".join(string))
+        return
+    for j in range(i,len(string)):
+        (string[i],string[j])=(string[j],string[i])
+        permutation(string,i+1,n,res)
+        (string[i],string[j])=(string[j],string[i])
+s="abc"
+res=[]
+permutation(list(s),0,len(s),res)
+print(res)
