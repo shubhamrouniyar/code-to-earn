@@ -1,0 +1,117 @@
+/* 
+ * Enter your code here. Read input from STDIN. Print your output to STDOUT. 
+ * Your class should be named CandidateCode.
+*/
+
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+public class CandidateCode {
+    public static String And(String num1,String num2)
+    {
+        int l1=num1.length();
+        Integer a=new Integer(10);
+        int y=(Integer.parseInt(num1,2)&Integer.parseInt(num2,2));
+        String re=a.toString(y,2);
+        int l2=re.length();
+        String msb=new String();
+        for(int i=0;i<(l1-l2);i++)
+        {
+            msb+='0';
+        }
+        return msb+re;
+    }
+    public static int ekcalculate(String x)
+    {
+        int maxcount=0;
+        String[] newarr=x.split('0');
+        int len=newarr.length;
+        for(int j=0;j<len;j++)
+        {
+            int countcurr=newarr[j].length();
+            if(countcurr && maxcount<=countcurr)
+            {
+                maxcount=countcurr;
+            }
+        }
+    return maxcount;
+    }
+    public static int important_fun(String arr[],int n)
+    {
+    	for(int i=0;i<n;i++)
+        {
+            String curr=arr[i];
+            for(int j=0;i<curr.length();j++)
+            {
+                if(curr[j]=='x')
+                {
+                    curr[j]='1';
+                }
+                else if(curr[j]=='o')
+                {
+                    curr[j]='0';
+                }
+                else{
+                    curr[j]=new String();
+                }
+            }
+            arr[i]=curr;
+        }
+        int curexp=0;
+        int curgot=0;
+        int result=-1;
+        for(int i=0;i<n;i++)
+        {
+            int countcurr=ekcalculate(arr[i]);
+            if(curgot<=countcurr)
+            {
+                curgot=countcurr;
+            }
+        }
+
+        while(curgot>=curexp)
+        {
+            curexp+=1;
+            String[] temparr=new String[n];
+            int newcurgot=0;
+            for(int i=0;i<n;i++)
+            {
+                if(arr[i+1])
+                {
+                    temparr[i]=And(arr[i],arr[i+1]);
+                    int newcurcount=ekcalculate(temparr[i]);
+                    if(newcurgot<=newcurcount)
+                    {
+                        newcurgot=newcurcount;
+                    }
+                }
+
+            }
+            curgot=newcurgot;
+            for(int i=0;i<n;i++)
+            {
+                arr[i]=temparr[i];
+            }
+            if(curgot>=curexp)
+            {
+                result=curexp+1;
+            }
+        }
+        return result;
+    }
+
+
+    public static void main(String args[] ) throws Exception {
+        int n;
+        Scanner input=new Scanner(System.in);
+        n=input.nextInt();
+        String[] arr=new String[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=input.nextLine();
+        }
+        int ans=important_fun(arr,n);
+        System.out.println(ans);
+   
+   }
+}
